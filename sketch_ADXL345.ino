@@ -1,5 +1,11 @@
-//Sketch that reads ADXL345 accelerometer measures and outputs it over the serial port
+//Sketch reading ADXL345 accelerometer measures and outputs them over the serial port
 //Serial output can be read into processing to display graphs of the acceleration in x, y, and z direction
+//Put together by Lapatate on Feb-2013
+
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the version 3 GNU General Public License as
+//published by the Free Software Foundation.
+
 
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
@@ -22,9 +28,9 @@ char DATAZ1 = 0x37;	//Z-Axis Data 1
 
 String gRange; 
 
-// Sensitivity to convert raw values in g's at +-4G 
-// +-2G = 256 / +-4G = 132 / +-8G = 64 / +-16G = 32
-int sensitivity; //
+// Sensitivity factor to convert raw values in g's
+int sensitivity;
+
 
 void setup()
 {
@@ -44,7 +50,7 @@ void setup()
 void loop()
 {
   readAccel(); // read the x/y/z tilt
-  delay(1); // only read every 0,05 seconds
+  delay(10); // read every 0,01 seconds for fast display in Processing
 }
 
 void readAccel() {
